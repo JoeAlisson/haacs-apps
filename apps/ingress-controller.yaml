@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: espaco-saude-api
+  namespace: argocd
+spec:
+  project: espaco-saude
+  source:
+    repoURL: 'https://kubernetes.github.io/ingress-nginx'
+    chart: ingress-nginx
+    targetRevision: 4.2.3
+    path: ingress-ngnix
+    helm:
+      releaseName: ingress-nginx
+  destination:
+    namespace: ingress
+    server: 'https://kubernetes.default.svc'
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
