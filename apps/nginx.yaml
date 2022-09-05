@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx
+  namespace: argocd
+spec:
+  project: apps
+  source:
+    repoURL: 'https://github.com/JoeAlisson/haacs-apps.git'
+    targetRevision: main
+    path: nginx
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    namespace: nginx
+    server: 'https://kubernetes.default.svc'
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
