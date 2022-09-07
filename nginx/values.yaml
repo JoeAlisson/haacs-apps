@@ -52,7 +52,7 @@ ingress:
   tls:
     - secretName: nginx-tls
       hosts:
-        do.joealisson.dev
+        - do.joealisson.dev
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
