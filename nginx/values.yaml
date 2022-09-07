@@ -49,6 +49,9 @@ ingress:
     # kubernetes.io/tls-acme: "true"
   hosts:
     - host: do.joealisson.dev
+      paths:
+        - path: /
+          pathType: Prefix
   tls:
     - secretName: nginx-tls
       hosts:
